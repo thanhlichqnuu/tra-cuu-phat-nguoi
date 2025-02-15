@@ -14,4 +14,9 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Tra cứu phạt nguội';
+  next();
+});
+
 export default router;

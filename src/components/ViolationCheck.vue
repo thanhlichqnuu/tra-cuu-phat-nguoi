@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import axios from "axios";
 
 const updateTimeRegex = /\d{2}:\d{2}:\d{2} \d{2}-\d{2}-\d{4}/;
@@ -95,10 +95,6 @@ const resetForm = () => {
   vehicleType.value = "";
   result.value = null;
 };
-
-onMounted(() => {
-  document.title = "Kiểm tra phạt nguội";
-});
 </script>
 
 <template>
