@@ -401,11 +401,77 @@ const resetForm = () => {
 .data-source {
   text-align: center;
   margin-top: 1rem;
-  font-size: 0.9rem;
   color: #007bff;
   font-weight: bold;
 }
 
+@media (max-width: 1024px) {
+  .container {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .input,
+  .select {
+    padding: 0.65rem;
+  }
+  .search-button {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+  .detail-label, .detail-value {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .card {
+    padding: 1.2rem;
+  }
+  .input,
+  .select {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .search-button {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .result-title {
+    font-size: 1.5rem;
+  }
+  .detail-label, .detail-value {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  .status-badges {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .search-again {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .update-info,
+  .data-source {
+    font-size: 0.85rem;
+  }
+}
+  
 .slide-fade-enter-active {
   transition: all 0.5s ease;
 }
@@ -414,3 +480,4 @@ const resetForm = () => {
   opacity: 0;
 }
 </style>
+
