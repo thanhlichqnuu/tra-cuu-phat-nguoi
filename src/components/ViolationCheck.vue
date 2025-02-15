@@ -9,7 +9,7 @@ const detailViolationRegex = /\s*\(Xem chi tiết\)/;
 const licensePlate = ref("");
 const vehicleType = ref("");
 const result = ref(null);
-const loading = ref(false);
+const isLoading = ref(false);
 const domainName = window.location.hostname;
 
 const isFormValid = computed(() => {
@@ -78,7 +78,7 @@ const parseHTMLResponse = (html) => {
 
 const handleSearch = async () => {
   try {
-    loading.value = true;
+    isLoading.value = true;
     const { data } = await axios.get(
       `https://api.phatnguoi.vn/web/tra-cuu/${licensePlate.value}/${vehicleType.value}`
     );
@@ -86,7 +86,7 @@ const handleSearch = async () => {
   } catch (err) {
     console.error(err);
   } finally {
-    loading.value = false;
+    isLoading.value = false;
   }
 };
 
@@ -104,6 +104,7 @@ const resetForm = () => {
     <div class="card search-card">
       <div class="form-group">
         <input
+        :disabled="isLoading"
           v-model="licensePlate"
           type="text"
           placeholder="Nhập biển số xe"
@@ -111,7 +112,7 @@ const resetForm = () => {
         />
       </div>
       <div class="form-group">
-        <select v-model="vehicleType" class="select">
+        <select :disabled="isLoading" v-model="vehicleType" class="select">
           <option disabled value="">Chọn loại xe</option>
           <option value="1">Ô tô</option>
           <option value="2">Xe máy</option>
@@ -120,10 +121,10 @@ const resetForm = () => {
       </div>
       <button
         @click="handleSearch"
-        :disabled="!isFormValid || loading"
+        :disabled="!isFormValid || isLoading"
         class="search-button"
       >
-        <span v-if="loading">ĐANG KIỂM TRA...</span>
+        <span v-if="isLoading">ĐANG KIỂM TRA...</span>
         <span v-else>KIỂM TRA PHẠT NGUỘI</span>
       </button>
     </div>
@@ -461,6 +462,9 @@ const resetForm = () => {
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
+  }
+  .badge {
+    font-size: 0.8rem;
   }
   .search-again {
     padding: 0.5rem;
